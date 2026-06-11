@@ -26,13 +26,20 @@ cp .env.example .env
 
 2. Set your provider credentials in `.env`.
 
-3. Start the local LangGraph dev server:
+3. Run the sample file:
+
+```bash
+python sample_run.py --commit
+```
+
+
+4. Start the local LangGraph dev server:
 
 ```bash
 uv run langgraph dev
 ```
 
-4. Run unit tests:
+5. Run unit tests:
 
 ```bash
 uv run python -m pytest tests/unit_tests -q

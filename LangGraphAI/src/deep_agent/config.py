@@ -18,7 +18,7 @@ def resolve_package_path(path: str | Path) -> Path:
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=PACKAGE_DIR / ".env",
+        env_file= ".env",
         env_file_encoding="utf-8",
         extra="ignore",
     )
