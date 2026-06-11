@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from langchain_qdrant import QdrantVectorStore
 from langchain_chroma import Chroma
 from qdrant_client import QdrantClient
 from langchain_core.embeddings import Embeddings
 from .config import settings
+from .config import PACKAGE_DIR
 
 
 def get_vectorstore(embedding: Embeddings):
@@ -22,7 +25,7 @@ def get_vectorstore(embedding: Embeddings):
         return Chroma(
             collection_name=settings.CHROMA_COLLECTION_NAME,
             embedding_function=embedding,
-            persist_directory="./chroma_db",
+            persist_directory=str(PACKAGE_DIR / "chroma_db"),
         )
     
     # Check if we should use Qdrant

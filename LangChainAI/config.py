@@ -3,6 +3,15 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
 
+PACKAGE_DIR = Path(__file__).resolve().parent
+
+
+def resolve_package_path(path: str | Path) -> Path:
+    candidate = Path(path)
+    if candidate.is_absolute():
+        return candidate
+    return PACKAGE_DIR / candidate
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=Path(__file__).resolve().parent / ".env",

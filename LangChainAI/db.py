@@ -6,13 +6,13 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from .config import settings
+from .config import resolve_package_path, settings
 from .schemas import DraftResponse, TaskItem, TicketAnalysisResult, TicketMetadata
 
 
 class DBManager:
     def __init__(self, db_path: str | Path | None = None) -> None:
-        self.db_path = Path(db_path) if db_path else Path(settings.DATABASE_DIR) / "support.db"
+        self.db_path = Path(db_path) if db_path else resolve_package_path(settings.DATABASE_DIR) / "support.db"
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self.connection = sqlite3.connect(str(self.db_path), check_same_thread=False)
         self.connection.row_factory = sqlite3.Row

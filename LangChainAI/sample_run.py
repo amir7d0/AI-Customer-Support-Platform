@@ -1,10 +1,16 @@
 from __future__ import annotations
 
 import json
+import sys
+from pathlib import Path
 
-from .schemas import TicketMetadata
-from .sample_data import SAMPLE_EMAIL
-from .service import create_support_service
+PACKAGE_DIR = Path(__file__).resolve().parent
+if str(PACKAGE_DIR.parent) not in sys.path:
+    sys.path.insert(0, str(PACKAGE_DIR.parent))
+
+from LangChainAI.schemas import TicketMetadata
+from LangChainAI.sample_data import SAMPLE_EMAIL
+from LangChainAI.service import create_support_service
 
 
 def main() -> None:

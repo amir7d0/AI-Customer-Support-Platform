@@ -5,14 +5,14 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from .config import settings
+from .config import resolve_package_path, settings
 
 
 class TicketMemoryManager:
     """Manages ticket history with JSON-based persistent storage."""
     
     def __init__(self, storage_file: str | Path | None = None) -> None:
-        self.storage_file = Path(storage_file) if storage_file else Path(settings.DATABASE_DIR) / "ticket_archive.json"
+        self.storage_file = Path(storage_file) if storage_file else resolve_package_path(settings.DATABASE_DIR) / "ticket_archive.json"
         self.storage_file.parent.mkdir(parents=True, exist_ok=True)
         self._store: dict[str, Any] = {}
         self._memory_buffer: list[str] = []

@@ -35,6 +35,7 @@ class TicketAnalyzer:
 
         # Ensure tasks are TaskItem objects with ticket_id
         tasks = []
+        print("Raw analysis output:", analysis)
         for task in analysis.tasks:
             if isinstance(task, TaskItem):
                 tasks.append(task)
